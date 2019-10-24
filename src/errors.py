@@ -1,10 +1,11 @@
 from starlette.responses import JSONResponse
+from starlette.status import (HTTP_201_CREATED, HTTP_404_NOT_FOUND,
+                              HTTP_400_BAD_REQUEST, HTTP_409_CONFLICT)
+
 
 def DoesNoExist():
-    return JSONResponse({"error": "Query didn't find a result"}, status_code=404)
+    return JSONResponse({"error": "Query didn't find a result"}, status_code=HTTP_404_NOT_FOUND)
 
 def ValidationError():
-    return JSONResponse({"error": "Error validating data"}, status_code=400)
+    return JSONResponse({"error": "Error validating data"}, status_code=HTTP_400_BAD_REQUEST)
 
-def UserAlreadyExists():
-    return JSONResponse({"error": "An user with this username already exists"}, status_code=409)
