@@ -17,6 +17,8 @@ uvicorn = "*"
 pyyaml = "*"
 jsonschema = "*"
 gunicorn = "*"
+fastapi = "*"
+python-multipart = "*"
 
 [requires]
 python_version = "3.7"
