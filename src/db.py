@@ -22,7 +22,7 @@ MEDIA_FOLDER = config['media_folder']
 log = logging.getLogger(__name__)
 
 class Status(Model):
-    id = fields.IntField(pk=True)
+    id = fields.BigIntField(pk=True)
     created_at = fields.DatetimeField(auto_now_add = True)
     updated_at = fields.DatetimeField(auto_now = True)
     caption = fields.CharField(512, default="")
@@ -94,7 +94,7 @@ class Status(Model):
 
 class UserProfile(Model):
 
-    id = fields.IntField(pk=True)
+    id = fields.BigIntField(pk=True)
     username = fields.CharField(64, unique=True, null=True)
 
     def __repr__(self):
