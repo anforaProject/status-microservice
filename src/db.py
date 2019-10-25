@@ -22,7 +22,7 @@ MEDIA_FOLDER = config['media_folder']
 log = logging.getLogger(__name__)
 
 class Status(Model):
-    id = fields.IntField(pk=True)
+    id = fields.BigIntField(pk=True)
     created_at = fields.DatetimeField(auto_now_add = True)
     updated_at = fields.DatetimeField(auto_now = True)
     caption = fields.CharField(512, default="")
@@ -36,7 +36,9 @@ class Status(Model):
     favourites_count = fields.IntField(default=0)
     reblog_count = fields.IntField(default=0)
     ident = fields.CharField(null=False, unique=True, max_length=32)
-
+    media_files = fields.ManyToManyField('models.Status',
+                                    related_name = 'status'
+    )
     def __repr__(self):
         return self.ident
 
@@ -94,8 +96,12 @@ class Status(Model):
 
 class UserProfile(Model):
 
-    id = fields.IntField(pk=True)
+    id = fields.BigIntField(pk=True)
     username = fields.CharField(64, unique=True, null=True)
 
     def __repr__(self):
         return self.username
+
+class Media(Model):
+    id = fields.BigIntField(pk=True)
+    created_at = fields.DatetimeField(auto_now_add = True)
