@@ -36,7 +36,9 @@ class Status(Model):
     favourites_count = fields.IntField(default=0)
     reblog_count = fields.IntField(default=0)
     ident = fields.CharField(null=False, unique=True, max_length=32)
-
+    media_files = fields.ManyToManyField('models.Status',
+                                    related_name = 'status'
+    )
     def __repr__(self):
         return self.ident
 
@@ -99,3 +101,7 @@ class UserProfile(Model):
 
     def __repr__(self):
         return self.username
+
+class Media(Model):
+    id = fields.BigIntField(pk=True)
+    created_at = fields.DatetimeField(auto_now_add = True)
